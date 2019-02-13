@@ -4,7 +4,7 @@ from odoo import api, fields, models, _
 class ScrumSprint (models.Model):
     _name = 'scrum.sprint'
 
-    sprint_name = fields.Char(string='Sprint name')
-    sprint_init = fields.Date(string='Sprint Start')
-    sprint_end = fields.Date(string='Sprint End')
-    scrum_team = fields.Many2one('scrum.team', string='Scrum team')
+    name = fields.Char(string='Sprint name')
+    date_init = fields.Date(string='Sprint Start')
+    date_end = fields.Date(string='Sprint End')
+    team_id = fields.Many2one('scrum.team', string='Scrum team')

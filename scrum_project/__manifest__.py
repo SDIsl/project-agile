@@ -11,13 +11,10 @@
     'license': 'AGPL-3',
     'depends': [
         'project',
-        'contacts',         
     ],
     'data': [
-        'views/inherit_project_task_form_view.xml',
-        'views/scrum_team_view.xml',
-        'views/scrum_sprint_view.xml',
+
     ],
     'installable': True,
-    'application': True,
+    'application': False,
 }
