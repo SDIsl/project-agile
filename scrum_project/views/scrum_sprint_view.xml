@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- model.name tree view -->
+    <record id="scrum_sprint_view_tree" model="ir.ui.view">
+        <field name="name">scrum.sprint.view.tree</field>
+        <field name="model">scrum.sprint</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="sprint_name"/>
+                <field name="sprint_init"/>
+                <field name="sprint_end"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- model.name form view -->
+    <record id="scrum_sprint_view_form" model="ir.ui.view">
+        <field name="name">scrum.sprint.view.form</field>
+        <field name="model">scrum.sprint</field>
+        <field name="arch" type="xml">
+            <form string="Sprints">
+                <sheet>
+                    <h1>Sprint Name:</h1>
+                    <h1>
+                        <field name="sprint_name"/>
+                    </h1>
+                    <group>
+                        <field name="sprint_init"/>
+                        <field name="sprint_end"/>
+                        <field name="scrum_team"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- model.name action window -->
+    <record id="scrum_sprint_action" model="ir.actions.act_window">
+        <field name="name">Sprint</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">scrum.sprint</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a Sprint!
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_action_scrum_sprint" name="Sprints"
+              parent="main_menu_scrum" action="scrum_sprint_action" sequence="4"/>
+</odoo>

@@ -6,9 +6,11 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='kanban_state']" position="replace">
+            <xpath expr="//field[@name='kanban_state']" position="attributes">
+                <attribute name="attrs">{'invisible':1}</attribute>
             </xpath>
-            <xpath expr="//field[@name='priority']" position="replace">
+            <xpath expr="//field[@name='priority']" position="attributes">
+                <attribute name="attrs">{'invisible':1}</attribute>
             </xpath>
             <xpath expr="//page[@name='extra_info']" position="attributes">
                 <attribute name="attrs">{'invisible':1}</attribute>
@@ -26,7 +28,6 @@
                 <field name="scrum_priority" widget="priority"/>
             </xpath>
             <xpath expr="//page[@name='description_page']" position="before">
-            <!--<xpath expr="//notebook" position="inside">-->
                 <page string="Desciption Task" name="desciption_page">
                     <group>
                         <group string="Description">

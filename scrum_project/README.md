@@ -19,10 +19,10 @@ Contributors
 
 * `SDI <http://www.sdi.es>`_
 
-  * David Juaneda Ayensa <djuaneda@sdi.es>
+  * Óscar Soto <osoto@sdi.es>
   * Javier Garcia <jgarcia@sdi.es>
   * Javier Izco <jizco@sdi.es>
-  * Jorge Luis Quitneros <jquinteros@sdi.es>
+  * Jorge Luis Quinteros <jquinteros@sdi.es>
 
 * `ALOXA <https://github.com/dockdoo>`_
 

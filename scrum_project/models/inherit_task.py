@@ -11,7 +11,6 @@ class ProjectTask (models.Model):
     scrum_what = fields.Text(string='What to do?')
     scrum_who = fields.Text(string='For whom?')
     scrum_for_what = fields.Text(string='For What?')
-    # scrum_detail = fields.Html(string='Detail', help=_('Write a description of the task'))
     scrum_priority = fields.Selection(string='Task priority', selection=[('0', 'Normal'), ('1', 'Baja'),('2', 'Alta'),('3', 'Muy Alta')])
     
     
