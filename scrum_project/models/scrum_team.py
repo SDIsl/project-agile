@@ -2,6 +2,8 @@ from odoo import api, fields, models, _
 from odoo import tools, _
 from odoo.modules.module import get_module_resource
 import base64
+from wdb import set_trace as depurador
+
 
 class ScrumTeam (models.Model):
     _name = 'scrum.team'
@@ -34,13 +36,19 @@ class ScrumTeam (models.Model):
                                      string='Current Sprint',
                                      compute="_compute_current_sprint")
 
-    @api.model
+    @api.multi
     def _compute_current_sprint(self):
-        sprint_obj = self.env['scrum.sprint'].search(
-            [('team_id', '=', self.id), ("active", "=", True)],
-            order="date_init desc")
-        obj = sprint_obj[0]
-        self.current_sprint = obj
+        depurador()
+        for team in self:
+            sprint_obj = self.env['scrum.sprint'].search(
+                [('team_id', '=', team.id), ("active", "=", True)],
+                order="date_init desc")
+            print(sprint_obj)
+            obj = False
+            if len(sprint_obj) > 1:
+                obj = sprint_obj[0]
+            print(obj)
+            team.current_sprint = obj
 
     @api.model
     def create(self, vals):
