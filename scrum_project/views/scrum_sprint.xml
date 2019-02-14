@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="scrum_sprint_form" model="ir.ui.view">
+            <field name="name">scrum.sprint.form</field>
+            <field name="model">scrum.sprint</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Sprint Form">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name" readonly="0"/>
+                            </h1>
+                        </div>
+                        <group class="o_label_nowrap">
+                            <field name="team_id"/>
+                            <field name="date_init"/>
+                            <field name="date_end"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="scrum_sprint_tree" model="ir.ui.view">
+            <field name="name">scrum.sprint.tree</field>
+            <field name="model">scrum.sprint</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="team_id"/>
+                    <field name="date_init"/>
+                    <field name="date_end"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="scrum_sprint_calendar" model="ir.ui.view" >
+            <field name="name">scrum.sprint.calendar</field>
+            <field name="model">scrum.sprint</field>
+            <field name="arch" type="xml">
+                <calendar string="Sprints" date_start="date_init" date_stop="date_end" color="team_id">
+                    <field name="name"/>
+                </calendar>
+            </field>
+        </record>
+
+    </data>
+</odoo>
