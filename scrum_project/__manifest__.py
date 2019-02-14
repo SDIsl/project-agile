@@ -5,7 +5,7 @@
     'name': 'SCRUM Project',
     'version': '11.0.1.0.0',
     'category': 'Project Agile',
-    'author': 'Jorge Luis Quinteros',
+    'author': 'SDi Soluciones Informáticas',
     'summary': """ Create SCRUM environment""",
     'license': 'AGPL-3',
     'depends': [

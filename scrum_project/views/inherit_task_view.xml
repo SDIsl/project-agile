@@ -10,7 +10,7 @@
             </xpath>
             <xpath expr="//field[@name='tag_ids']" position="after">
                 <field name="scrum_sprint_id" attrs="{'invisible': [('is_user_story', '=', False)]}"/>
-                <field name="scrum_team_id" attrs="{'invisible': [('is_user_story', '=', False)]}"/>
+                <field name="scrum_team_id" invisible="True"/>
             </xpath>
             <xpath expr="//page[@name='description_page']" position="before">
                 <page string="SCRUM info" name="description_scrum" autofocus='autofocus' attrs="{'invisible': [('is_user_story', '=', False)]}">
