@@ -8,3 +8,5 @@ class ScrumSprint (models.Model):
     date_init = fields.Date(string='Sprint Start')
     date_end = fields.Date(string='Sprint End')
     team_id = fields.Many2one('scrum.team', string='Scrum team')
+    active = fields.Boolean(string='Active')
+

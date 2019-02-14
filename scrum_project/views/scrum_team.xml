@@ -1,38 +1,82 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <record id="scrum_team_form" model="ir.ui.view">
-        <field name="name">scrum.team.form</field>
-        <field name="model">scrum.team</field>
-        <field name="type">form</field>
-        <field name="arch" type="xml">
-            <form string="Mail Channel Form">
-                <sheet>
-                    <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
-                    <div class="oe_title">
-                        <div class="oe_edit_only">
-                                    <label for="name"/>
+    <data noupdate="0">
+
+        <record id="scrum_team_form" model="ir.ui.view">
+            <field name="name">scrum.team.form</field>
+            <field name="model">scrum.team</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Mail Channel Form">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+                                <label for="name"/>
+                            </div>
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Name" readonly="0"/>
+                            </h1>
                         </div>
-                        <h1>
-                            <field name="name" default_focus="1" placeholder="Name" readonly="0"/>
-                        </h1>
-                    </div>
-                    <group class="o_label_nowrap">
-                        <field name="user_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
-                    </group>
-                </sheet>
-            </form>
-        </field>
-    </record>
+                        <group class="o_label_nowrap">
+                            <field name="user_ids" widget="many2many_tags" options="{'no_create_edit': True}"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-    <record id="scrum_team_tree" model="ir.ui.view">
-        <field name="name">scrum.team.tree</field>
-        <field name="model">scrum.team</field>
-        <field name="type">tree</field>
-        <field name="arch" type="xml">
-            <tree create="false" edit="false">
-                <field name="name"/>
-            </tree>
-        </field>
-    </record>
+        <record id="scrum_team_tree" model="ir.ui.view">
+            <field name="name">scrum.team.tree</field>
+            <field name="model">scrum.team</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
 
+        <record id="model_name_view_kanban" model="ir.ui.view">
+            <field name="name">scrum.team.view.kanban</field>
+            <field name="model">scrum.team</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_project_kanban o_emphasize_colors">
+                    <field name="name"/>
+                    <field name="image"/>
+                    <field name="user_ids"/>
+                    <field name="stage_ids"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click o_kanban_record">
+
+                                <div class="oe_kanban_details">
+                                    <div class="o_kanban_image">
+                                        <t t-if="record.image.raw_value">
+                                            <img t-att-src="kanban_image('scrum.team', 'image', record.image.raw_value)"/>
+                                        </t>
+                                    </div>
+                                    <div class="o_kanban_primary_left">
+                                        <div class="o_kanban_record_title o_primary">
+                                            <field name="name"/>
+                                        </div>
+                                        <div>
+                                            <t t-if="record.current_sprint.raw_value">
+                                                <field name="current_sprint"/>
+                                            </t>
+                                            <t t-else="">No active Sprints</t>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a class="o_kanban_manage_toggle_button o_left" href="#" groups="project.group_project_manager">
+                                    <i class="fa fa-ellipsis-v"/>
+                                </a>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+    </data>
 </odoo>

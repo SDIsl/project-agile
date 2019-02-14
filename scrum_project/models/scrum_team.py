@@ -30,7 +30,17 @@ class ScrumTeam (models.Model):
              "Use this field anywhere a small image is required.")
 
     stage_ids = fields.Many2many('project.task.type', string='Stage')
+    current_sprint = fields.Many2one(comodel_name='scrum.sprint',
+                                     string='Current Sprint',
+                                     compute="_compute_current_sprint")
 
+    @api.model
+    def _compute_current_sprint(self):
+        sprint_obj = self.env['scrum.sprint'].search(
+            [('team_id', '=', self.id), ("active", "=", True)],
+            order="date_init desc")
+        obj = sprint_obj[0]
+        self.current_sprint = obj
 
     @api.model
     def create(self, vals):
