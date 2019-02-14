@@ -34,20 +34,25 @@ class ScrumTeam (models.Model):
     stage_ids = fields.Many2many('project.task.type', string='Stage')
     current_sprint = fields.Many2one(comodel_name='scrum.sprint',
                                      string='Current Sprint',
-                                     compute="_compute_current_sprint")
+                                     compute="_compute_current_sprint",
+                                     store=True)
+    sprints_count = fields.Integer(string='Total Sprints',
+                                   compute="_compute_count")
 
     @api.multi
     def _compute_current_sprint(self):
         for team in self:
             sprint_obj = self.env['scrum.sprint'].search(
                 [('team_id', '=', team.id), ("active", "=", True)],
-                order="date_init desc")
-            print(sprint_obj)
-            obj = False
-            if len(sprint_obj) > 1:
-                obj = sprint_obj[0]
-            print(obj)
-            team.current_sprint = obj
+                order="date_init desc", limit=1)
+            team.current_sprint = sprint_obj or False
+
+    @api.multi
+    def _compute_count(self):
+        for team in self:
+            total = self.env['scrum.sprint'].search_count(
+                [('team_id', '=', team.id)])
+            team.sprints_count = total
 
     @api.model
     def create(self, vals):
