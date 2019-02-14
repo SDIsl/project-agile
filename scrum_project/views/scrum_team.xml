@@ -7,7 +7,7 @@
             <field name="model">scrum.team</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
-                <form string="Mail Channel Form">
+                <form string="Team Form">
                     <sheet>
                         <field name="image" widget="image" class="oe_avatar" options="{'preview_image': 'image_medium', 'size': [90, 90]}"/>
                         <div class="oe_title">
