@@ -23,4 +23,16 @@
             </form>
         </field>
     </record>
+
+    <record id="scrum_team_tree" model="ir.ui.view">
+        <field name="name">scrum.team.tree</field>
+        <field name="model">scrum.team</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="false">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
 </odoo>
