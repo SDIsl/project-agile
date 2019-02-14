@@ -38,7 +38,6 @@ class ScrumTeam (models.Model):
 
     @api.multi
     def _compute_current_sprint(self):
-        depurador()
         for team in self:
             sprint_obj = self.env['scrum.sprint'].search(
                 [('team_id', '=', team.id), ("active", "=", True)],
