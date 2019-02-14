@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <odoo>
-    <data noupdate="1">
+    <data noupdate="0">
 
         <!-- scrum.team action window -->
         <record id="_act_team_dashboard" model="ir.actions.act_window">
-            <field name="name">scrum.team.action</field>
+            <field name="name">Teams Dashboard</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">scrum.team</field>
-            <field name="view_mode">tree,form,kanban</field>
+            <field name="view_mode">kanban,form,tree</field>
             <field name="view_type">form</field>
         </record>
         
@@ -17,7 +17,7 @@
         <menuitem id="_menu_categ_scrum" name="SCRUM" parent="project.menu_main_pm" sequence="2"/>
 
         <!-- DASHBOAR -->
-        <menuitem id="_menu_act_dashboard" name="Team Dashboard" parent="_menu_categ_scrum" action="_act_team_dashboard" sequence="1"/>
+        <menuitem id="_menu_act_dashboard" name="Teams Dashboard" parent="_menu_categ_scrum" action="_act_team_dashboard" sequence="1"/>
 
         <!-- SCRUM TEAMS -->
         <menuitem id="_menu_act_teams" name="Teams" parent="_menu_categ_scrum" action="" sequence="2"/>
