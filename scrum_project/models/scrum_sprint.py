@@ -20,5 +20,5 @@ class ScrumSprint (models.Model):
     def name_get(self):
         data = []
         for sprint in self:
-             data.append((sprint.id, "%s, %s" % (sprint.name, sprint.team_id.name)))
+            data.append((sprint.id, "%s, %s" % (sprint.name, sprint.team_id.name)))
         return data
