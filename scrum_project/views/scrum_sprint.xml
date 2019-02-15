@@ -50,7 +50,7 @@
             <field name="name">scrum.sprint.calendar</field>
             <field name="model">scrum.sprint</field>
             <field name="arch" type="xml">
-                <calendar string="Sprints" date_start="date_init" date_stop="date_end" color="team_id">
+                <calendar string="Sprints" date_start="date_init" date_stop="date_end" color="team_id" mode="month">
                     <field name="name"/>
                 </calendar>
             </field>
