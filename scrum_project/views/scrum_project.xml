@@ -28,7 +28,7 @@
         </record>
         
         <!-- SCRUM -->
-        <menuitem id="_menu_categ_scrum" name="SCRUM" parent="project.menu_main_pm" sequence="2"/>
+        <menuitem id="_menu_categ_scrum" name="SCRUM" parent="project.menu_main_pm" sequence="1"/>
 
         <!-- DASHBOAR -->
         <menuitem id="_menu_act_dashboard" name="Teams Dashboard" parent="_menu_categ_scrum" action="_act_team_dashboard" sequence="1"/>

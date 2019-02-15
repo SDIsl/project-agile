@@ -38,19 +38,6 @@
             </field>
         </record>
 
-        <record id="_scrum_team_kanban_action" model="ir.actions.act_window">
-            <field name="name">Sprint Dashboard</field>
-            <field name="type">ir.actions.act_window</field>
-            <field name="res_model">project.task</field>
-            <field name="view_type">form</field>
-            <field name="view_mode">kanban,tree,form,calendar,pivot,graph</field>
-            <field name="context">{
-                'default_group_by': 'scrum_stage_id',
-                'search_default_scrum_team_id': [active_id],
-                'default_scrum_team_id': active_id,
-            }</field>
-        </record>
-
         <record id="model_name_view_kanban" model="ir.ui.view">
             <field name="name">scrum.team.view.kanban</field>
             <field name="model">scrum.team</field>
@@ -68,7 +55,7 @@
                         <t t-name="kanban-box">
                             <div t-attf-class=" oe_kanban_global_click o_has_icon">
                                 <div class="o_project_kanban_main">
-                                    <a class="o_project_kanban_box" name="%(_scrum_team_kanban_action)d" type="action" style="color:black;">
+                                    <a class="o_project_kanban_box" name="scrum_team_kanban_act" type="object" style="color:black;">
                                         <!-- IMAGEN -->
                                         <div class="o_kanban_image">
                                             <t t-if="record.image.raw_value">
@@ -82,14 +69,6 @@
                                                     <span>
                                                         <t t-esc="record.name.value"/>
                                                     </span>
-                                                </div>
-                                                <div>
-                                                    <t t-if="record.current_sprint.raw_value">
-                                                        <div class="badge">
-                                                            <field name="current_sprint"/>
-                                                        </div>
-                                                    </t>
-                                                    <t t-else="">No active Sprints yet.</t>
                                                 </div>
                                             </div>
                                         </div>
@@ -111,8 +90,18 @@
                                     </a>
                                 </div>
                                 <!-- INFERIOR -->
+                                <div>
+                                    <div>
+                                        <t t-if="record.current_sprint.raw_value">
+                                            <div class="badge">
+                                                <field name="current_sprint"/>
+                                            </div>
+                                        </t>
+                                        <t t-else="">No active Sprints yet.</t>
+                                    </div>
+                                </div>
                                 <div class="o_project_kanban_boxes">
-                                    <a class="o_project_kanban_box" name="%(_scrum_team_kanban_action)d" type="action">
+                                    <a class="o_project_kanban_box" name="scrum_team_kanban_act" type="object">
                                         <div class="col-xs-12 text-right">
                                             <div>
                                                 <span class="o_value">

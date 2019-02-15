@@ -2,7 +2,6 @@ from odoo import api, fields, models, _
 from odoo import tools, _
 from odoo.modules.module import get_module_resource
 import base64
-from wdb import set_trace as depurador
 
 
 class ScrumTeam (models.Model):
@@ -34,8 +33,7 @@ class ScrumTeam (models.Model):
     stage_ids = fields.Many2many('project.task.type', string='Stage')
     current_sprint = fields.Many2one(comodel_name='scrum.sprint',
                                      string='Current Sprint',
-                                     compute="_compute_current_sprint",
-                                     store=True)
+                                     compute="_compute_current_sprint")
     sprints_count = fields.Integer(string='Total Sprints',
                                    compute="_compute_count")
 
@@ -63,3 +61,26 @@ class ScrumTeam (models.Model):
     def write(self, vals):
         tools.image_resize_images(vals)
         return super(ScrumTeam, self).write(vals)
+
+    def scrum_team_kanban_act(self):
+        # ODOO ME VACILA CON EL CONTEXTO --- NOTAS, BORRAR ---
+        context = {
+                'default_group_by': 'scrum_stage_id',
+                'search_default_scrum_team_id': [self.id],
+                'default_scrum_team_id': self.id,
+                'search_default_scrum_sprint_id': [self.current_sprint.id],
+                'default_scrum_sprint_id': self.current_sprint.id,
+        }
+        domain = [('scrum_sprint_id', '=', self.current_sprint.id)]
+        return {
+            "name": _("Sprint Dashboard")+"/"+self.current_sprint.name,
+            "type": "ir.actions.act_window",
+            "res_model": "project.task",
+            "view_mode": "form",
+            "view_type": "form",
+            "views": [[False, "kanban"], [False, "form"], [False, "tree"],
+                      [False, "search"]],
+            "domain": domain,
+            "context": context,
+            "target": "current"
+        }
