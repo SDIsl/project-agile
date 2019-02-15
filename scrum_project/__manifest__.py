@@ -17,6 +17,7 @@
         'views/scrum_sprint.xml',
         'views/scrum_project.xml',
         'views/scrum_team.xml',
+        'views/inherit_task_type.xml',
     ],
     'installable': True,
     'application': False,

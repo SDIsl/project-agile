@@ -18,5 +18,5 @@ class ProjectTask (models.Model):
     scrum_value = fields.Integer(string='Value')
     scrum_sprint_id = fields.Many2one('scrum.sprint', string='Sprint')
     scrum_team_id = fields.Many2one(related='scrum_sprint_id.team_id', readonly='True')
-    scrum_stage_id = fields.Many2one('project.task.type', string='Stage', invisible='True')
+    scrum_stage_id = fields.Many2one('project.task.type', string='Stage')
     
