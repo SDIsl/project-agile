@@ -72,13 +72,14 @@ class ScrumTeam (models.Model):
                 'default_scrum_sprint_id': self.current_sprint.id,
         }
         domain = [('scrum_sprint_id', '=', self.current_sprint.id)]
+        scrum_task_kanban_ref = self.env.ref('scrum_project.project_task_scrum_view_kanban').id
         return {
             "name": _("Sprint Dashboard")+"/"+self.current_sprint.name,
             "type": "ir.actions.act_window",
             "res_model": "project.task",
             "view_mode": "form",
             "view_type": "form",
-            "views": [[False, "kanban"], [False, "form"], [False, "tree"],
+            "views": [[scrum_task_kanban_ref, "kanban"], [False, "form"], [False, "tree"],
                       [False, "search"]],
             "domain": domain,
             "context": context,

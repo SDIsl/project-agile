@@ -1,5 +1,5 @@
 
-from odoo import api, fields, models, _
+from odoo import api, fields, models, tools, SUPERUSER_ID, _
 
 
 class ProjectTask (models.Model):
@@ -18,5 +18,13 @@ class ProjectTask (models.Model):
     scrum_value = fields.Integer(string='Value')
     scrum_sprint_id = fields.Many2one('scrum.sprint', string='Sprint')
     scrum_team_id = fields.Many2one(related='scrum_sprint_id.team_id', readonly='True')
-    scrum_stage_id = fields.Many2one('project.task.type', string='Stage')
+    scrum_stage_id = fields.Many2one('project.task.type', string='Stage',
+                                     invisible='True', group_expand='_read_group_scrum_stage_ids')
     
+    @api.model
+    def _read_group_scrum_stage_ids(self, stages, domain, order):
+        search_domain = [('id', 'in', stages.ids)]
+        if 'default_scrum_team_id' in self.env.context:
+            search_domain = ['|', ('scrum_team_ids', '=', self.env.context['default_scrum_team_id'])] + search_domain
+        stage_ids = stages._search(search_domain, order=order, access_rights_uid=SUPERUSER_ID)
+        return stages.browse(stage_ids)
